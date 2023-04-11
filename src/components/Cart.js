@@ -1,19 +1,20 @@
-import { useState } from "react";
+import { useCounter } from "../hooks/useCounter";
 import { Item } from "./Item";
 
 export const Cart = () => {
-  const [quantity, setQuantity] = useState(0);
+    const quantity = useCounter({ initial: 6, min: 5 });
 
-  return (
-    <div>
-      <h1>Meu carrinho</h1>
-      <Item
-        label="My produto massa"
-        quantity={0}
-        onIncrement={quantity.somar}
-        onDecrement={quantity.subtrair}
-        onReset={quantity.reset}
-      />
-    </div>
-  );
+    return (
+        <div>
+            <h1>Meu carrinho</h1>
+            <Item
+                label="My produto massa"
+                quantity={quantity.valor}
+                onIncrement={quantity.somar}
+                onDecrement={quantity.subtrair}
+                onReset={quantity.reset}
+                stepDecrement={2}
+            />
+        </div>
+    );
 };

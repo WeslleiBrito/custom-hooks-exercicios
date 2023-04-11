@@ -3,9 +3,9 @@ import { Cart } from './components/Cart';
 
 function App() {
   return (
-    <div>
-    <Cart />
-  </div>
+    <div className="App">
+      <Cart />
+    </div>
   );
 }
 
