@@ -2,7 +2,7 @@ import { useCounter } from "../hooks/useCounter";
 import { Item } from "./Item";
 
 export const Cart = () => {
-    const quantity = useCounter({ initial: 6, min: 5 });
+    const quantity = useCounter({ initial: 6, min: 5, max: 20 });
 
     return (
         <div>
@@ -14,6 +14,7 @@ export const Cart = () => {
                 onDecrement={quantity.subtrair}
                 onReset={quantity.reset}
                 stepDecrement={2}
+                stepIncrement={3}
             />
         </div>
     );

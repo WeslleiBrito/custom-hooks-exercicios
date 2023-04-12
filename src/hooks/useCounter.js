@@ -5,7 +5,18 @@ export const useCounter = ({ initial, min, max }) => {
     const [quantity, setQuantity] = useState(min && min > initial ? min : initial);
 
     const increment = (step) => {
-        setQuantity(step ? quantity + step : quantity + 1);
+
+        if (quantity < max) {
+            if (((quantity + step) <= max) || ((quantity + 1) <= max && !step)) {
+
+                setQuantity(step ? quantity + step : quantity + 1)
+            } else if (step && (quantity + 1) <= max) {
+                setQuantity(max)
+            }
+
+        } else if (!max) {
+            setQuantity(step ? quantity + step : quantity + 1)
+        }
     };
 
     const decrement = (step) => {
@@ -24,8 +35,8 @@ export const useCounter = ({ initial, min, max }) => {
 
     };
 
-    const reset = (reset) => {
-        setQuantity(reset ? reset : 0);
+    const reset = () => {
+        setQuantity(min ? min : 0);
     };
 
     return {
